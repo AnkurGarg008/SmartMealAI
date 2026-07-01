@@ -72,15 +72,21 @@ if st.button("Generate My Recipe 🚀", use_container_width=True):
     else:
         with st.spinner("🧑‍🍳 AI Chef Ankur is crafting your recipe..."):
             try:
-                # Custom engineering the prompt using ALL chosen features
+                # Custom engineering the prompt to include a full nutrition breakdown
                 prompt = f"""
-                You are an elite expert chef. Create a premium recipe based on these parameters:
+                You are an elite expert chef and a certified nutritionist. Create a premium recipe based on these parameters:
                 - Available Ingredients: {ingredients}
                 - Dietary Restriction: {diet_pref}
                 - Style/Vibe of Recipe: {cuisine_style}
                 - Max Time Allowed: {cooking_time} minutes
                 
-                Provide a creative and catchy name for the dish, yields, prep time, cook time, a clear ingredients list (incorporating staples like salt, oil, water as needed), and step-by-step instructions. Present it beautifully.
+                Your response MUST be organized into these exact sections:
+                1. 🍳 **Dish Name**: Create a catchy, premium name.
+                2. 📊 **Estimated Nutritional Profile (Per Serving)**: Provide a clean Markdown table with columns for 'Nutrient', 'Amount', and 'Daily Value %'. Include Calories, Protein (g), Carbohydrates (g), and Fats (g).
+                3. 🛒 **Ingredients Needed**: List them clearly, incorporating staples like salt, oil, water as needed.
+                4. 🧑‍🍳 **Step-by-Step Instructions**: Clear, professional, sequential cooking steps.
+                
+                Keep the tone engaging and present it beautifully.
                 """
                 
                 model = genai.GenerativeModel("gemini-2.5-flash")
