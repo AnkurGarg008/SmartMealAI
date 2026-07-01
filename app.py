@@ -83,7 +83,7 @@ if st.button("Generate My Recipe 🚀", use_container_width=True):
                 Provide a creative and catchy name for the dish, yields, prep time, cook time, a clear ingredients list (incorporating staples like salt, oil, water as needed), and step-by-step instructions. Present it beautifully.
                 """
                 
-                model = genai.GenerativeModel("gemini-1.5-flash")
+                model = genai.GenerativeModel("models/gemini-1.5-flash")
                 response = model.generate_content(prompt)
                 
                 st.success("Here is your custom recipe! 🔥")
